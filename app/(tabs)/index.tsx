@@ -15,7 +15,7 @@ import { SafeAreaView as SafeAreaViewRN, useSafeAreaInsets } from 'react-native-
 
 
 
-const WEATHER_API_KEY = '1223a1d1bdae45fdbc5202048251306';
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 
 function toCelsius(f: number) { return ((f - 32) * 5) / 9; }
 
@@ -449,7 +449,7 @@ export default function DogWalkSafetyScreen() {
         setCity(cityName);
       } else {
         try {
-          const OPENCAGE_API_KEY = '30ac786f7de74572ae57c37f48ec58f1';
+          const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY;
           const ocUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
           const ocResp = await axios.get(ocUrl);
           const results = ocResp.data.results;
@@ -603,7 +603,7 @@ export default function DogWalkSafetyScreen() {
       return;
     }
     try {
-      const OPENCAGE_API_KEY = '30ac786f7de74572ae57c37f48ec58f1';
+      const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY;
       const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(postalInput.trim())}&key=${OPENCAGE_API_KEY}`;
       const resp = await fetch(url);
       const data = await resp.json();
